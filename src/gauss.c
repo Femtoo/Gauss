@@ -8,7 +8,7 @@ int eliminate(Matrix *mat, Matrix *b){
     /**
   	 * Tutaj należy umieścić właściwą implemntację.
 		 */
-
+//costam
 		return 0;
 }
 
