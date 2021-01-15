@@ -5,10 +5,23 @@
  * Zwraca 1 - macierz osobliwa - dzielenie przez 0
  */
 int eliminate(Matrix *mat, Matrix *b){
-    /**
-  	 * Tutaj należy umieścić właściwą implemntację.
-		 */
-//costam
-		return 0;
+	double liczba,liczba2,liczba3,liczba4;
+	int i,j,k;
+
+	k=0;
+	while(k != (mat->r-1)){
+		for(i=k;i<mat->r-1;i++){
+			liczba3 = ((*mat)->data[i+1][k]/mat->data[k][k]);
+			for(j=k;j<mat->c;j++){
+				liczba2 = mat->data[i+1][j];
+				liczba = mat->data[k][j];
+				mat->data[i+1][j]=(liczba2-(liczba*liczba3));
+			}
+			liczba4 = b->data[k][0];
+			b->data[i+1][0]=(b->data[i+1][0]-(liczba3*liczba4));	
+		}
+		k++;
+	}
+	return 0;
 }
 
