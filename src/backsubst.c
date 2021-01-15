@@ -19,16 +19,6 @@ int  backsubst(Matrix *x, Matrix *mat, Matrix *b) {
 		x->data[(b->r)-i-1][0]=roznica/mat->data[(mat->r)-i-1][(mat->c)-i-1];
 	}
 	
-	
-	
-	
-	/* To ponizej jest przepisaniem b do x. Nalezy to poprawic! */
-
-	/*			int i;
-				for (i =0; i < x->r; i++) {
-								x->data[i][0] = b->data[i][0];
-				}
-	*/
 				return 0;
 }
 
