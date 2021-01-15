@@ -13,7 +13,10 @@ Matrix * readFromFile(char * fname) {
 				Matrix * mat = NULL;
 
 				if (fin != NULL) {
-					fscanf(fin,"%d %d",&r,&c);
+					if(fscanf(fin,"%d %d",&r,&c)!=2){
+						fprintf(stderr,"Blad argumentow \n");
+						return mat;
+					}
 					mat = createMatrix(r,c);
 					if (mat != NULL) {
 						for (ir = 0; ir < r; ir++) 
