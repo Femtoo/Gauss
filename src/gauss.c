@@ -11,6 +11,9 @@ int eliminate(Matrix *mat, Matrix *b){
 	k=0;
 	while(k != (mat->r-1)){
 		for(i=k;i<mat->r-1;i++){
+			if(mat->data[k][k]==0){
+				return 1;
+			}
 			liczba3 = ((*mat)->data[i+1][k]/mat->data[k][k]);
 			for(j=k;j<mat->c;j++){
 				liczba2 = mat->data[i+1][j];
