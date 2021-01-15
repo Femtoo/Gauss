@@ -5,9 +5,8 @@
  * Zwraca 1 - macierz osobliwa - dzielenie przez 0
  */
 void zamien_wiersze(Matrix *mat,Matrix *b,int k,int l){
-	int s;
 	double m;
-	for(s=k;s<mat->c;s++){
+	for(int s=k;s<mat->c;s++){
 		m=mat->data[k][s];
 		mat->data[k][s]=mat->data[l][s];
 		mat->data[l][s]=m;
@@ -17,16 +16,14 @@ void zamien_wiersze(Matrix *mat,Matrix *b,int k,int l){
 	b->data[l][0]=m;
 }
 int eliminate(Matrix *mat, Matrix *b){
-	double liczba,liczba2,liczba3,liczba4;
-	int i,j,k;
-	int s,l;
-	double m;
+	double liczba,m;
+	int k,l;
 	
 	k=0;
 	while(k != (mat->r-1)){
 		l=k;
 		m=fabs(mat->data[k][k]);
-		for(s=k;s<mat->r;s++){
+		for(int s=k;s<mat->r;s++){
 			if(fabs(mat->data[s][k])>m){
 				m=fabs(mat->data[s][k]);
 					l=s;
@@ -36,18 +33,15 @@ int eliminate(Matrix *mat, Matrix *b){
 			zamien_wiersze(mat,b,k,l);
 		}
 		
-		for(i=k;i<mat->r-1;i++){
+		for(int i=k;i<mat->r-1;i++){
 			if(mat->data[k][k]==0){
 				return 1;
 			}
-			liczba3 = (mat->data[i+1][k]/mat->data[k][k]);
-			for(j=k;j<mat->c;j++){
-				liczba2 = mat->data[i+1][j];
-				liczba = mat->data[k][j];
-				mat->data[i+1][j]=(liczba2-(liczba*liczba3));
+			liczba = (mat->data[i+1][k]/mat->data[k][k]);
+			for(int j=k;j<mat->c;j++){
+				mat->data[i+1][j]=(mat->data[i+1][j]-(mat->data[k][j]*liczba));
 			}
-			liczba4 = b->data[k][0];
-			b->data[i+1][0]=(b->data[i+1][0]-(liczba3*liczba4));	
+			b->data[i+1][0]=(b->data[i+1][0]-(liczba*b->data[k][0]));	
 		}
 		k++;
 	}
