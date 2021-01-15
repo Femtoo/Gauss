@@ -4,39 +4,35 @@
  * Zwraca 0 - elimnacja zakonczona sukcesem
  * Zwraca 1 - macierz osobliwa - dzielenie przez 0
  */
-
-
+void zamien_wiersze(Matrix *mat,Matrix *b,int k,int l){
+	double m;
+	for(int s=k;s<mat->c;s++){
+		m=mat->data[k][s];
+		mat->data[k][s]=mat->data[l][s];
+		mat->data[l][s]=m;
+	}
+	m=b->data[k][0];
+	b->data[k][0]=b->data[l][0];
+	b->data[l][0]=m;
+}
 int eliminate(Matrix *mat, Matrix *b){
-	double liczba, tmp;
-	int k;
-	int sortowanie;
+	double liczba,m;
+	int k,l;
+	
 	k=0;
 	while(k != (mat->r-1)){
+		l=k;
+		m=fabs(mat->data[k][k]);
+		for(int s=k;s<mat->r;s++){
+			if(fabs(mat->data[s][k])>m){
+				m=fabs(mat->data[s][k]);
+					l=s;
+			}
+		}
+		if(l!=k){
+			zamien_wiersze(mat,b,k,l);
+		}
 		
-		do {
-			sortowanie=1;
-		for(int j=1; j< mat->r-k;j++) {
-		if(mat->data[j-1+k][k] > mat->data[j+k][k]) {
-		for(int m=k;m<mat->c;m++){
-			tmp= mat->data[k][m];
-			mat->data[k][m]=mat->data[j-1][m];
-			mat->data[j-1][m]=tmp;
-		}
-		tmp=b->data[k][0];
-		b->data[k][0]=b->data[j-1][0];
-		b->data[j-1][0]=tmp;
-
-			
-			/*double tmp = mat->data[j-1+k][k];
-		mat->data[j-1+k][k]=mat->data[j+k][k];
-		mat->data[j+k][k] = tmp;
-		for(int m=1;m
-			*/
-		sortowanie=0;
-		}
-		}
-		} while(!sortowanie);	
-
 		for(int i=k;i<mat->r-1;i++){
 			if(mat->data[k][k]==0){
 				return 1;
