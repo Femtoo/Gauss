@@ -5,7 +5,11 @@
  * Zwraca 2 - błąd nieprawidłowych rozmiarów macierzy
  */
 int  backsubst(Matrix *x, Matrix *mat, Matrix *b) {
-	double roznica;	
+	double roznica;
+	if(mat->r != mat->c)
+	return 2;
+	if(mat->r != b->r)
+	return 2;	
 	for(int i=0;i<b->r;i++) {
 		roznica=b->data[(b->r)-i-1][0];
 		for(int j=0;j<i;j++) {
