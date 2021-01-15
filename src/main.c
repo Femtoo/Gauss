@@ -17,10 +17,15 @@ int main(int argc, char ** argv) {
 	printToScreen(b);
 
 	res = eliminate(A,b);
+	if(res != 0)
+		fprintf(stderr,"Błąd! Dzielenie przez zero - funkcja eliminate\n");
 	x = createMatrix(b->r, 1);
 	if (x != NULL) {
 		res = backsubst(x,A,b);
-
+		if(res == 1)
+			fprintf(stderr,"Błąd! Dzielenie przez zero - funkcja backsubst\n");
+		if(res == 2)
+			fprintf(stderr,"Błąd! Nieprawidlowa macierz\n");
 		printToScreen(x);
 	  freeMatrix(x);
 	} else {
