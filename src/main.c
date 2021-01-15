@@ -3,7 +3,7 @@
 #include "mat_io.h"
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <math.h>
 
 int main(int argc, char ** argv) {
 	int res;
